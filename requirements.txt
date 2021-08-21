@@ -3,4 +3,3 @@ pyqrcode
 opencv-python
 webbrowser
 pyqrcode
-pypng

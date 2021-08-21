@@ -22,6 +22,3 @@ def createQR():
     Button(rootCreate,text="Submit",command=readVal).pack(pady=15)
 
     rootCreate.mainloop()
-
-
-createQR()

@@ -20,7 +20,7 @@ def readImage():
         if decodedText:
             if RegexCheck.isValidURL(decodedText):
                 print("QR Code redirecting to {}".format(decodedText))
-                webbrowser.open(decodedText)
+                webbrowser.open_new(decodedText)
             else:
                 print("QR Code value {}".format(decodedText))
                 webbrowser.open_new("https://www.google.com/search?q=" + decodedText)
@@ -39,7 +39,10 @@ def readVideo():
         qrCodeDetector = cv2.QRCodeDetector()
         decodedText,points,_ = qrCodeDetector.detectAndDecode(frame)
         if decodedText:
-            webbrowser.open_new(decodedText)
+            if RegexCheck.isValidURL(decodedText):
+                webbrowser.open_new(decodedText)
+            else:
+                webbrowser.open_new("https://www.google.com/search?q=" + decodedText)
             break
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -57,5 +60,3 @@ def readQR():
     Button(rootRead,text="Read Video",font="Corier 14",command=readVideo).pack(pady=20)
 
     rootRead.mainloop()
-
-readQR()
